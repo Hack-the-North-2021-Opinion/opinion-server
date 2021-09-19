@@ -22,4 +22,5 @@ class SocialMediaPosts(models.Model):
     sentiment = models.DecimalField(max_digits=4, decimal_places=3)
     magnitude = models.DecimalField(max_digits=5, decimal_places=3)
     platform = models.CharField(max_length=250)
-    search_term = models.ForeignKey(SearchTerms, on_delete=models.CASCADE)
+    # ForeignKey?
+    search_term = models.CharField(max_length=250, unique=True)
