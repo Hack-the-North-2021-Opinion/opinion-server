@@ -3,29 +3,23 @@ import uuid
 
 # models.py: define tables in here
 
-class Customers(models.Model):
+class SearchTerms(models.Model):
     id = models.UUIDField(
         primary_key=True,
         default=uuid.uuid4,
         editable=False)
-    name = models.CharField(max_length=250)
+    name = models.CharField(max_length=250, unique=True)
+    sentiment_score_v1 = models.DecimalField(max_digits=4, decimal_places=3)
+    last_updated = models.DateTimeField(auto_now=True)
 
-
-class Products(models.Model):
+class SocialMediaPosts(models.Model):
     id = models.UUIDField(
         primary_key=True,
         default=uuid.uuid4,
-        editable=False)
-    name = models.CharField(max_length=250)
-    price = models.DecimalField(max_digits=18, decimal_places=2)
-
-
-class Orders(models.Model):
-    id = models.UUIDField(
-        primary_key=True,
-        default=uuid.uuid4,
-        editable=False)
-    subtotal = models.DecimalField(max_digits=18, decimal_places=2)
-    customer = models.ForeignKey(
-        Customers, on_delete=models.CASCADE, null=True)
-    product = models.ManyToManyField(Products)
+        editable=False
+    )
+    content = models.CharField(max_length=1000)
+    sentiment = models.DecimalField(max_digits=4, decimal_places=3)
+    magnitude = models.DecimalField(max_digits=5, decimal_places=3)
+    platform = models.CharField(max_length=250)
+    search_term = models.ForeignKey(SearchTerms, on_delete=models.CASCADE)
