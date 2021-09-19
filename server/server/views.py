@@ -11,8 +11,9 @@ import time
 
 from .models import *
 
-# Warning: Do not use retry_on_exception in an inner nested transaction.
+# views.py: Read and write transaction operations on tables defined in models.py
 
+# Warning: Do not use retry_on_exception in an inner nested transaction.
 
 def retry_on_exception(num_retries=3, on_failure=HttpResponse(status=500), delay_=0.5, backoff_=1.5):
     def retry(view):

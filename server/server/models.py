@@ -1,6 +1,7 @@
 from django.db import models
 import uuid
 
+# models.py: define tables in here
 
 class Customers(models.Model):
     id = models.UUIDField(

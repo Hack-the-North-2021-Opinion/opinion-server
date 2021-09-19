@@ -3,6 +3,8 @@ from django.urls import path
 
 from .views import CustomersView, OrdersView, PingView, ProductView
 
+# URLs / Endpoints
+
 urlpatterns = [
     path('admin/', admin.site.urls),
 
